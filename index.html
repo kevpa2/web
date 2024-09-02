@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizador de Cargas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container" id="appContainer">
+        <div class="header">
+            <h1 id="ownerGreeting">Hola, Julian</h1>
+        </div>
+
+        <!-- Imagen con enlace ajustado -->
+        <img src="https://drive.google.com/file/d/1xXEQzqLYGDGzcjaIncsvMhohcn7ksZeN/view?usp=drive_link"   style="width: 100%; height: auto; border-radius: 10px;">
+
+        <div class="menu">
+            <button id="cargasIcon" onclick="showSection('cargas')">⚡</button>
+        </div>
+
+        <div id="cargas" class="section active">
+            <h3>Cargas</h3>
+            <div class="input-group">
+                <input type="text" id="suelaName" placeholder="Nombre de la suela">
+                <button id="searchCargaButton" onclick="searchCarga()">Buscar Carga</button>
+                <div id="cargaResult" class="carga-result">
+                    <!-- Resultados de la búsqueda aparecerán aquí -->
+                </div>
+            </div>
+            <button onclick="showAddSuelaSection()">Añadir Nueva Suela</button>
+            <div id="addSuelaSection" class="hidden">
+                <h4>Agregar Nueva Suela</h4>
+                <div class="input-group">
+                    <input type="text" id="newSuelaName" placeholder="Nombre de la suela">
+                    <div id="sizesContainer">
+                        <div class="size-entry">
+                            <input type="number" class="suelaSize" placeholder="Talla">
+                            <input type="number" class="suelaCarga" placeholder="Carga">
+                        </div>
+                    </div>
+                    <button id="addSizeEntryButton" onclick="addSizeEntry()">Añadir Talla y Carga</button>
+                    <button id="saveSuelaButton" onclick="saveSuela()">Guardar Suela</button>
+                </div>
+            </div>
+            <button onclick="showModifySuelaSection()">Modificar/Borrar Suela</button>
+            <div id="modifySuelaSection" class="hidden">
+                <h4>Modificar o Borrar Suela</h4>
+                <div class="input-group">
+                    <input type="text" id="modifySuelaName" placeholder="Nombre de la suela">
+                    <button id="modifySuelaButton" onclick="modifySuela()">Actualizar Suela</button>
+                    <button id="deleteSuelaButton" onclick="deleteSuela()">Borrar Suela</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="motivational-quotes">
+            <p id="motivationalQuote"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
