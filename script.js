@@ -1,123 +1,141 @@
-body {
-    font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(to right, #4b6cb7, #182848);
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    color: #fff;
+// Inicialización de los datos en localStorage si no existen
+if (!localStorage.getItem('appData')) {
+    const initialData = {
+        suelas: [],
+        ownerName: 'Usuario'
+    };
+    localStorage.setItem('appData', JSON.stringify(initialData));
 }
 
-.container {
-    width: 360px;
-    height: 640px;
-    background-color: #222;
-    border-radius: 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    position: relative;
+const data = JSON.parse(localStorage.getItem('appData'));
+
+// Mostrar secciones
+function showSection(sectionId) {
+    const sections = document.querySelectorAll('.section');
+    sections.forEach(section => section.classList.remove('active'));
+    document.getElementById(sectionId).classList.add('active');
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+// Mostrar sección para agregar suela
+function showAddSuelaSection() {
+    document.getElementById('addSuelaSection').classList.remove('hidden');
+    document.getElementById('modifySuelaSection').classList.add('hidden');
 }
 
-.header h1 {
-    font-size: 18px;
-    margin: 0;
+// Mostrar sección para modificar o borrar suela
+function showModifySuelaSection() {
+    document.getElementById('modifySuelaSection').classList.remove('hidden');
+    document.getElementById('addSuelaSection').classList.add('hidden');
 }
 
-.image-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
+// Añadir talla y carga
+function addSizeEntry() {
+    const sizeInput = document.querySelector('#sizesContainer .suelaSize');
+    const cargaInput = document.querySelector('#sizesContainer .suelaCarga');
+    const suelaName = document.getElementById('newSuelaName').value;
+
+    if (!suelaName) {
+        alert('Por favor, ingrese el nombre de la suela antes de añadir tallas y cargas.');
+        return;
+    }
+
+    if (sizeInput && cargaInput) {
+        const size = parseFloat(sizeInput.value);
+        const carga = parseFloat(cargaInput.value);
+
+        if (!isNaN(size) && !isNaN(carga)) {
+            // Guardar en la base de datos
+            let suela = data.suelas.find(suela => suela.name === suelaName);
+            if (!suela) {
+                suela = { name: suelaName, sizes: [] };
+                data.suelas.push(suela);
+            }
+            suela.sizes.push({ size, carga });
+
+            localStorage.setItem('appData', JSON.stringify(data));
+
+            // Limpiar los campos de entrada
+            sizeInput.value = '';
+            cargaInput.value = '';
+            sizeInput.focus();
+        } else {
+            alert('Ingrese una talla y carga válidos.');
+        }
+    } else {
+        alert('Ingrese una talla y carga.');
+    }
 }
 
-.image-container img {
-    width: 100px; /* Ajusta el tamaño de la imagen */
-    height: auto; /* Mantén la proporción */
-    border-radius: 10px; /* Opcional: añade un borde redondeado */
+// Guardar suela
+function saveSuela() {
+    const suelaName = document.getElementById('newSuelaName').value;
+    if (suelaName) {
+        const existingSuelaIndex = data.suelas.findIndex(suela => suela.name === suelaName);
+        if (existingSuelaIndex !== -1) {
+            // Actualizar suela existente
+            const suelaSizes = data.suelas[existingSuelaIndex].sizes;
+            if (suelaSizes.length > 0) {
+                data.suelas[existingSuelaIndex].sizes = suelaSizes;
+            }
+        }
+        // Vaciar campos y mostrar mensaje
+        document.getElementById('sizesContainer').innerHTML = `
+            <div class="size-entry">
+                <input type="number" class="suelaSize" placeholder="Talla">
+                <input type="number" class="suelaCarga" placeholder="Carga">
+            </div>`;
+        document.getElementById('newSuelaName').value = '';
+        alert('Suela guardada exitosamente.');
+    } else {
+        alert('Ingrese un nombre de suela.');
+    }
 }
 
-.menu {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
+// Buscar carga de suela
+function searchCarga() {
+    const suelaName = document.getElementById('suelaName').value;
+    const result = data.suelas.find(suela => suela.name === suelaName);
+    const cargaResult = document.getElementById('cargaResult');
+    if (result) {
+        cargaResult.innerHTML = '';
+        result.sizes.forEach(size => {
+            cargaResult.innerHTML += `Talla: ${size.size}, Carga: ${size.carga}<br>`;
+        });
+    } else {
+        cargaResult.innerHTML = 'Suela no encontrada.';
+    }
 }
 
-.menu button {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
-    transition: color 0.3s, transform 0.3s;
+// Modificar suela
+function modifySuela() {
+    const suelaName = document.getElementById('modifySuelaName').value;
+    const suela = data.suelas.find(suela => suela.name === suelaName);
+    if (suela) {
+        document.getElementById('newSuelaName').value = suela.name;
+        const sizesContainer = document.getElementById('sizesContainer');
+        sizesContainer.innerHTML = '';
+        suela.sizes.forEach(size => {
+            sizesContainer.innerHTML += `
+                <div class="size-entry">
+                    <input type="number" class="suelaSize" value="${size.size}" placeholder="Talla">
+                    <input type="number" class="suelaCarga" value="${size.carga}" placeholder="Carga">
+                </div>`;
+        });
+        showAddSuelaSection();
+    } else {
+        alert('Suela no encontrada.');
+    }
 }
 
-.menu button:hover {
-    color: #ff6f61;
-}
-
-.section {
-    display: none;
-    transition: opacity 0.3s ease-in-out;
-}
-
-.section.active {
-    display: block;
-}
-
-.input-group {
-    margin-bottom: 10px;
-}
-
-.input-group input {
-    width: 100%;
-    padding: 10px;
-    border-radius: 10px;
-    border: none;
-    font-size: 16px;
-    margin-bottom: 10px;
-    background: #333;
-    color: #fff;
-}
-
-.size-entry {
-    margin-bottom: 10px;
-}
-
-.size-entry input {
-    margin-right: 10px;
-}
-
-.hidden {
-    display: none;
-}
-
-.carga-result {
-    background: #333;
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 10px;
-}
-
-.carga-result p {
-    margin: 0;
-}
-
-.motivational-quotes {
-    margin-top: auto;
-    text-align: center;
-}
-
-.motivational-quotes p {
-    font-size: 16px;
+// Borrar suela
+function deleteSuela() {
+    const suelaName = document.getElementById('modifySuelaName').value;
+    const index = data.suelas.findIndex(suela => suela.name === suelaName);
+    if (index !== -1) {
+        data.suelas.splice(index, 1);
+        localStorage.setItem('appData', JSON.stringify(data));
+        alert('Suela eliminada.');
+    } else {
+        alert('Suela no encontrada.');
+    }
 }
