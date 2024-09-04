@@ -1,3 +1,4 @@
+/* Estilos generales */
 body {
     font-family: 'Montserrat', sans-serif;
     background: linear-gradient(to right, #4b6cb7, #182848);
@@ -10,6 +11,7 @@ body {
     color: #fff;
 }
 
+/* Contenedor principal */
 .container {
     width: 360px;
     height: 640px;
@@ -23,6 +25,7 @@ body {
     position: relative;
 }
 
+/* Ajustes para encabezado y títulos */
 .header {
     display: flex;
     justify-content: space-between;
@@ -42,6 +45,7 @@ body {
     margin-bottom: 20px;
 }
 
+/* Menú de botones */
 .menu {
     display: flex;
     justify-content: center;
@@ -61,6 +65,7 @@ body {
     color: #ff6f61;
 }
 
+/* Secciones */
 .section {
     display: none;
     transition: opacity 0.3s ease-in-out;
@@ -68,46 +73,57 @@ body {
 
 .section.active {
     display: block;
+    overflow-y: auto; /* Habilita scroll vertical para secciones activas */
+    max-height: 400px; /* Ajusta la altura según sea necesario */
 }
 
+/* Grupo de entradas */
 .input-group {
     margin-bottom: 10px;
 }
 
 .input-group input {
-    width: 100%;
-    padding: 10px;
+    width: 90%;
+    padding: 8px;
     border-radius: 10px;
     border: none;
-    font-size: 16px;
-    margin-bottom: 10px;
+    font-size: 14px;
+    margin-bottom: 8px;
     background: #333;
     color: #fff;
 }
 
+/* Entradas para tallas y cargas */
 .size-entry {
-    margin-bottom: 10px;
+    display: flex;
+    margin-bottom: 8px;
 }
 
 .size-entry input {
-    margin-right: 10px;
+    width: 45%;
+    margin-right: 5px;
 }
 
+/* Ocultar elementos */
 .hidden {
     display: none;
 }
 
+/* Resultados de carga */
 .carga-result {
     background: #333;
     border-radius: 10px;
-    padding: 15px;
+    padding: 10px;
     margin-bottom: 10px;
+    max-height: 150px; /* Limita la altura y habilita el scroll */
+    overflow-y: auto;
 }
 
 .carga-result p {
     margin: 0;
 }
 
+/* Frases motivacionales */
 .motivational-quotes {
     margin-top: auto;
     text-align: center;
@@ -115,4 +131,22 @@ body {
 
 .motivational-quotes p {
     font-size: 16px;
+}
+
+/* Estilos para el botón de regreso */
+.back-button {
+    background: none;
+    border: none;
+    color: #fff; /* Color blanco para que sea visible */
+    font-size: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px; /* Ajusta la posición superior */
+    right: 20px; /* Ajusta la posición izquierda */
+    transition: color 0.3s;
+    z-index: 10; /* Asegura que esté por encima de otros elementos */
+}
+
+.back-button:hover {
+    color: #ff6f61; /* Cambia de color al pasar el ratón */
 }
