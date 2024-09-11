@@ -139,3 +139,30 @@ function deleteSuela() {
         alert('Suela no encontrada.');
     }
 }
+
+// Función para manejar el cambio de foco tras 2 segundos de inactividad
+function setupAutoFocus() {
+    let timeout;
+    document.querySelectorAll('.suelaSize, .suelaCarga').forEach(input => {
+        input.addEventListener('input', () => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                moveToNextInput(input);
+            }, 2000);
+        });
+    });
+}
+
+// Mover foco al siguiente input
+function moveToNextInput(currentInput) {
+    const inputs = Array.from(document.querySelectorAll('.suelaSize, .suelaCarga'));
+    const currentIndex = inputs.indexOf(currentInput);
+    if (currentIndex < inputs.length - 1) {
+        inputs[currentIndex + 1].focus();
+    } else {
+        inputs[0].focus(); // O puedes dejarlo sin hacer nada.
+    }
+}
+
+// Inicializar la funcionalidad de auto-focus
+setupAutoFocus();
