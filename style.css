@@ -3,7 +3,7 @@ body {
     background-color: #f2f4f8;
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Evita desbordamientos en toda la página */
+    overflow: hidden; /* Evita scroll general */
 }
 
 .app-container {
@@ -12,10 +12,10 @@ body {
     background-color: #ffffff;
     border-radius: 15px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    height: 100vh; /* Ocupa toda la altura */
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 header {
@@ -28,14 +28,14 @@ header {
 nav {
     display: flex;
     overflow-x: auto; /* Scroll horizontal */
-    white-space: nowrap; /* Evita que los botones se salten de línea */
+    white-space: nowrap;
     background-color: #e4e6eb;
     padding: 10px 0;
 }
 
 .dias {
     display: inline-block;
-    min-width: 80px; /* Tamaño mínimo de cada botón */
+    min-width: 80px;
     margin: 5px;
     background-color: #fff;
     padding: 10px;
@@ -61,7 +61,7 @@ nav {
 
 #rutina {
     flex: 1; /* Ocupa el espacio restante */
-    overflow-y: auto; /* Scroll vertical para los ejercicios */
+    overflow-y: auto; /* Scroll vertical */
     padding: 10px;
 }
 
@@ -86,11 +86,7 @@ footer {
     font-size: 0.9em;
 }
 
-/* Diseño para móviles */
-@media (max-width: 600px) {
-    .app-container {
-        border-radius: 0;
-        box-shadow: none;
-        width: 100%;
-    }
+html {
+    scroll-behavior: smooth;
+    overscroll-behavior: none; /* Previene el pull-to-refresh */
 }
