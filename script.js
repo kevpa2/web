@@ -1,72 +1,85 @@
-const rutina = {
-    1: { nombreDia: "Lunes - Pecho y tríceps", ejercicios: [
-        { nombre: "Press de banca plano", descripcion: "4 series de 10-12 repeticiones", explicacion: "Acuéstate boca arriba, baja la barra hasta el pecho y empuja hacia arriba." },
-        { nombre: "Fondos en banca", descripcion: "3 series de 12-15 repeticiones", explicacion: "Coloca las manos en una banca detrás de ti y baja el cuerpo flexionando los codos." },
-        { nombre: "Press cerrado para tríceps", descripcion: "3 series de 10-12 repeticiones", explicacion: "Con las manos juntas en la barra, baja y sube controladamente." },
-        { nombre: "Plancha frontal con peso", descripcion: "3 series de 30-45 segundos", explicacion: "Mantén la posición de plancha con peso adicional sobre la espalda." }
-    ]},
-    2: { nombreDia: "Martes - Espalda y bíceps", ejercicios: [
-        { nombre: "Remo con barra", descripcion: "4 series de 10-12 repeticiones", explicacion: "Mantén la espalda recta mientras jalas la barra hacia tu abdomen." },
-        { nombre: "Remo con mancuernas", descripcion: "3 series de 12-15 repeticiones", explicacion: "Flexiona ligeramente las rodillas y lleva las mancuernas hacia la cadera." },
-        { nombre: "Curl de bíceps alternado", descripcion: "3 series de 12-15 repeticiones", explicacion: "Alterna las repeticiones entre ambos brazos, manteniendo la forma." },
-        { nombre: "Elevación de piernas acostado", descripcion: "3 series de 15-20 repeticiones", explicacion: "Acostado boca arriba, eleva las piernas sin tocar el suelo al bajarlas." }
-    ]},
-    3: { nombreDia: "Miércoles - Resistencia (HIIT)", ejercicios: [
-        { nombre: "Burpees", descripcion: "4 rondas de 12 repeticiones", explicacion: "Desde posición de pie, salta, baja a una flexión y vuelve a saltar." },
-        { nombre: "Peso muerto con barra", descripcion: "4 rondas de 10 repeticiones", explicacion: "Mantén la espalda recta mientras levantas la barra desde el suelo." },
-        { nombre: "Plancha con toques de hombro", descripcion: "4 rondas de 20 segundos", explicacion: "En posición de plancha, toca tus hombros alternativamente." },
-        { nombre: "Zancadas con mancuernas", descripcion: "4 rondas de 12 repeticiones por pierna", explicacion: "Da un paso adelante con cada pierna, bajando la cadera." },
-        { nombre: "Escaladores", descripcion: "4 rondas de 30 segundos", explicacion: "En posición de plancha alta, lleva las rodillas al pecho alternadamente." }
-    ]},
-    4: { nombreDia: "Jueves - Piernas", ejercicios: [
-        { nombre: "Sentadilla con barra", descripcion: "4 series de 10-12 repeticiones", explicacion: "Coloca la barra en los hombros, baja en cuclillas y sube." },
-        { nombre: "Zancadas estáticas con mancuernas", descripcion: "3 series de 12 por pierna", explicacion: "Mantén una pierna al frente, baja la cadera y sube." },
-        { nombre: "Peso muerto rumano", descripcion: "3 series de 10-12 repeticiones", explicacion: "Mantén las piernas ligeramente flexionadas y baja la barra." },
-        { nombre: "Elevaciones de talones", descripcion: "4 series de 15-20 repeticiones", explicacion: "Eleva los talones mientras mantienes la barra sobre los hombros." }
-    ]},
-    5: { nombreDia: "Viernes - Hombros y abdomen", ejercicios: [
-        { nombre: "Press militar con barra", descripcion: "4 series de 10-12 repeticiones", explicacion: "Empuja la barra hacia arriba desde la altura de los hombros." },
-        { nombre: "Elevaciones laterales con mancuernas", descripcion: "3 series de 12-15 repeticiones", explicacion: "Levanta las mancuernas a los lados hasta la altura de los hombros." },
-        { nombre: "Encogimientos de hombros con barra", descripcion: "3 series de 15-20 repeticiones", explicacion: "Eleva los hombros hacia las orejas con la barra." },
-        { nombre: "Crunch con peso", descripcion: "3 series de 15 repeticiones", explicacion: "Realiza crunches sosteniendo una pesa sobre el pecho." },
-        { nombre: "Toques al talón (oblicuos)", descripcion: "3 series de 15-20 repeticiones", explicacion: "Toca el talón derecho e izquierdo alternadamente mientras estás acostado." }
-    ]}
+const rutinaPorDia = {
+    1: [ // Lunes
+        { nombre: "Press de banca plano con barra", repeticiones: "4x10-12", descripcion: "Acuéstate en el banco, baja la barra al pecho y empuja hacia arriba." },
+        { nombre: "Fondos en banca (peso corporal)", repeticiones: "3x12-15", descripcion: "Coloca las manos en una banca detrás de ti y baja el cuerpo." },
+        { nombre: "Press cerrado con barra para tríceps", repeticiones: "3x10-12", descripcion: "Sujeta la barra con agarre estrecho y baja hacia el pecho." },
+        { nombre: "Plancha frontal con peso", repeticiones: "3x30-45 segundos", descripcion: "Mantén el cuerpo recto apoyado en codos y puntas de los pies." }
+    ],
+    2: [ // Martes
+        { nombre: "Remo con barra", repeticiones: "4x10-12", descripcion: "Inclínate hacia adelante y levanta la barra hacia el abdomen." },
+        { nombre: "Remo con mancuernas", repeticiones: "3x12-15", descripcion: "Con una mancuerna, levántala hacia tu cadera en cada mano." },
+        { nombre: "Curl de bíceps alternado", repeticiones: "3x12-15", descripcion: "Sujeta las mancuernas y dobla los codos para levantar las pesas." },
+        { nombre: "Elevación de piernas acostado", repeticiones: "3x15-20", descripcion: "Acuéstate boca arriba y levanta las piernas sin tocar el suelo." }
+    ],
+    3: [ // Miércoles
+        { nombre: "Burpees", repeticiones: "4x12", descripcion: "Realiza una flexión seguida de un salto vertical." },
+        { nombre: "Peso muerto con barra", repeticiones: "4x10", descripcion: "Levanta la barra desde el suelo con la espalda recta." },
+        { nombre: "Plancha con toques de hombro", repeticiones: "4x20 segundos", descripcion: "Mantén la posición de plancha y toca cada hombro." },
+        { nombre: "Zancadas con mancuernas", repeticiones: "4x12 por pierna", descripcion: "Da un paso adelante y baja la rodilla trasera hacia el suelo." },
+        { nombre: "Escaladores", repeticiones: "4x30 segundos", descripcion: "Desde posición de plancha, lleva las rodillas al pecho alternadamente." }
+    ],
+    4: [ // Jueves
+        { nombre: "Sentadilla con barra", repeticiones: "4x10-12", descripcion: "Baja la cadera manteniendo la barra en los hombros." },
+        { nombre: "Zancadas estáticas con mancuernas", repeticiones: "3x12 por pierna", descripcion: "Baja la rodilla trasera en una posición de estocada." },
+        { nombre: "Peso muerto rumano", repeticiones: "3x10-12", descripcion: "Baja la barra manteniendo las piernas casi rectas." },
+        { nombre: "Elevaciones de talones", repeticiones: "4x15-20", descripcion: "Levanta los talones para trabajar las pantorrillas." }
+    ],
+    5: [ // Viernes
+        { nombre: "Press militar con barra", repeticiones: "4x10-12", descripcion: "Levanta la barra desde los hombros hasta estirar los brazos." },
+        { nombre: "Elevaciones laterales", repeticiones: "3x12-15", descripcion: "Levanta las mancuernas hacia los lados hasta la altura de los hombros." },
+        { nombre: "Encogimientos de hombros", repeticiones: "3x15-20", descripcion: "Eleva los hombros lo más alto posible mientras sostienes las pesas." },
+        { nombre: "Crunch con peso", repeticiones: "3x15", descripcion: "Realiza abdominales con un peso sobre el pecho." },
+        { nombre: "Toques al talón (oblicuos)", repeticiones: "3x20", descripcion: "Toca cada talón alternadamente desde posición de abdominales." }
+    ]
 };
 
-// Función para cargar y mostrar la rutina del día seleccionado
-function cargarRutinaDia(dia) {
-    const diaRutina = rutina[dia];
-    document.getElementById("titulo-dia").innerText = diaRutina.nombreDia;
-    const contenedor = document.getElementById("rutina-dia");
-    contenedor.innerHTML = "";
-    diaRutina.ejercicios.forEach(ej => {
-        contenedor.innerHTML += `
-            <div class="ejercicio">
-                <label>
-                    <input type="checkbox">
-                    <strong>${ej.nombre}</strong>: ${ej.descripcion}
-                </label>
-                <p>${ej.explicacion}</p>
-            </div>`;
-    });
-    mostrarSeccion('rutina');
-}
-
-// Mostrar una sección específica
-function mostrarSeccion(id) {
-    document.querySelectorAll(".seccion").forEach(seccion => {
-        seccion.style.display = "none";
-    });
-    document.getElementById(id).style.display = "block";
-}
-
-// Mostrar frase motivacional
 const frasesMotivacionales = [
-    "El dolor que sientes hoy será la fuerza que sentirás mañana.",
-    "No te detengas cuando duela, detente cuando termines.",
-    "Cada día cuenta. ¡Hazlo valer!",
-    "Entrena duro, vive fuerte.",
-    "El éxito no ocurre por accidente."
+    "¡No te detengas! Cada día estás más cerca de tu meta.",
+    "El dolor de hoy será la fuerza de mañana.",
+    "Los campeones siguen jugando hasta que lo hacen bien.",
+    "Cada esfuerzo cuenta. ¡Sigue adelante!"
 ];
-document.getElementById("frase").innerText = frasesMotivacionales[Math.floor(Math.random() * frasesMotivacionales.length)];
+
+function mostrarDia(dia) {
+    const rutina = rutinaPorDia[dia];
+    const rutinaContainer = document.getElementById('rutina');
+    rutinaContainer.innerHTML = '';
+
+    rutina.forEach(ejercicio => {
+        const div = document.createElement('div');
+        div.className = 'ejercicio';
+        div.innerHTML = `
+            <input type="checkbox">
+            <strong>${ejercicio.nombre} - ${ejercicio.repeticiones}</strong>
+            <p>${ejercicio.descripcion}</p>
+        `;
+        rutinaContainer.appendChild(div);
+    });
+    
+    document.getElementById('titulo-dia').innerText
+function mostrarDia(dia) {
+    const rutina = rutinaPorDia[dia];
+    const rutinaContainer = document.getElementById('rutina');
+    rutinaContainer.innerHTML = '';
+
+    rutina.forEach(ejercicio => {
+        const div = document.createElement('div');
+        div.className = 'ejercicio';
+        div.innerHTML = `
+            <input type="checkbox">
+            <strong>${ejercicio.nombre} - ${ejercicio.repeticiones}</strong>
+            <p>${ejercicio.descripcion}</p>
+        `;
+        rutinaContainer.appendChild(div);
+    });
+
+    document.getElementById('titulo-dia').innerText = getDiaTexto(dia);
+    document.getElementById('frase-motivacional').innerText = frasesMotivacionales[Math.floor(Math.random() * frasesMotivacionales.length)];
+}
+
+function getDiaTexto(dia) {
+    const dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"];
+    return dias[dia - 1];
+}
+
 
