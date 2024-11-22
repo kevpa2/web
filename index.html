@@ -4,26 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rutina de Ejercicios</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="app-container">
+    <div id="app-container">
         <header>
-            <h1>Mi Rutina de Ejercicios</h1>
+            <h1>Rutina de Ejercicios Semanal</h1>
         </header>
         <nav>
-            <div class="dias" onclick="mostrarDia(1)">Lunes</div>
-            <div class="dias" onclick="mostrarDia(2)">Martes</div>
-            <div class="dias" onclick="mostrarDia(3)">Miércoles</div>
-            <div class="dias" onclick="mostrarDia(4)">Jueves</div>
-            <div class="dias" onclick="mostrarDia(5)">Viernes</div>
+            <button class="dia-button" onclick="mostrarDia(1)">Lunes</button>
+            <button class="dia-button" onclick="mostrarDia(2)">Martes</button>
+            <button class="dia-button" onclick="mostrarDia(3)">Miércoles</button>
+            <button class="dia-button" onclick="mostrarDia(4)">Jueves</button>
+            <button class="dia-button" onclick="mostrarDia(5)">Viernes</button>
         </nav>
-        <div id="titulo-dia">Selecciona un día</div>
-        <div id="rutina"></div>
+        <main>
+            <h2 id="titulo-dia">Selecciona un día</h2>
+            <div id="rutina"></div>
+            <div id="frase-motivacional" class="motivacional">Cargando frase...</div>
+        </main>
         <footer>
-            <p id="frase-motivacional"></p>
+            <p>&copy; 2024. Todos los derechos reservados.</p>
         </footer>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
