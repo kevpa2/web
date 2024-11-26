@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App de Rutina de Ejercicios</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Mi Rutina de Ejercicios</h1>
+        </header>
+        <nav>
+            <div class="dias" onclick="cargarRutinaDia(1)">Lunes</div>
+            <div class="dias" onclick="cargarRutinaDia(2)">Martes</div>
+            <div class="dias" onclick="cargarRutinaDia(3)">Miércoles</div>
+            <div class="dias" onclick="cargarRutinaDia(4)">Jueves</div>
+            <div class="dias" onclick="cargarRutinaDia(5)">Viernes</div>
+            <div class="dias" onclick="cargarRutinaDia(6)">Sábado</div>
+        </nav>
+        <section id="rutina" class="seccion">
+            <h2 id="titulo-dia">Selecciona un día</h2>
+            <div id="rutina-dia"></div>
+        </section>
+        <footer>
+            <p id="frase"></p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
